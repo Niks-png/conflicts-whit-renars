@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Martel+Sans:wght@200;300;400;600;700;800;900&family=Orbitron:wght@400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #8E2DE2, #4A00E0);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+header{
+    text-align: center;
+    margin-top: 15px;
+}
+
+.stats{
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.stats button{
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    padding: 5px 15px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.stats button:hover{
+    background: rgba(255, 255, 255, 0.30);
+}
+
+.game-container{
+    display: grid;
+    /* JS will set grid-template-columns inline based on selected level */
+    grid-auto-rows: 94px;
+    row-gap: 10px;
+    margin-top: 25px;
+    justify-content: center;
+}
+
+.card{
+    width: 75px;
+    height: 94px;
+    perspective: 1000px; /* fixed typo */
+    cursor: pointer;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover{
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+.card-inner{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+}
+
+.card.flipped .card-inner{
+    transform: rotateY(180deg);
+}
+
+.front, .back{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    transition: background 0.3s ease;
+}
+
+.front{
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.back{
+    background: white;
+    transform: rotateY(180deg);
+}
+
+.card.matched .back{
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.hidden{
+    display: none;
+}
+
+#popup{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    color: #333;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3); /* fixed typo */
+    width: 280px;
+}
+
+#popup h2{
+    color: #4A00E0;
+    margin-bottom: 10px;
+}
+
+#popup button{
+    background: linear-gradient(135deg, #8E2DE2, #4A00E0);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 10px;
+}
+
+#popup button:hover{
+    background: linear-gradient(135deg, #7a1fcf, #3a00b3);
+}
+
+@keyframes popupFade{
+    to{
+        transform: translate(-50%,-50%) scale(1);
+        opacity: 1;
+    }
+}
